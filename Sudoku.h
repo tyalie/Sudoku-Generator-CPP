@@ -1,0 +1,7 @@
+
+class Sudoku {
+private:
+    
+public:
+    
+};
