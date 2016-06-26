@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.5)
 project(Sudoku)
 
-#ifdef __APPLE__
-set(CMAKE_PREFIX_PATH "/Users/Georg/Documents/Qt/5.6/clang_64")
-#elif __linux__
-set(CMAKE_PREFIX_PATH "/home/gansgar/Qt/5.6/gcc_64")
-#endif
+if(APPLE)
+    set(CMAKE_PREFIX_PATH "/Users/Georg/Documents/Qt/5.6/clang_64")
+elseif(UNIX)
+    set(CMAKE_PREFIX_PATH "/home/gansgar/Qt/5.6/gcc_64")
+endif()
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)

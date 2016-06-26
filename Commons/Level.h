@@ -4,7 +4,6 @@
 #include <string>
 
 enum Level {
-    None,
     ExtremlyEasy,
     Easy,
     Medium,
@@ -25,8 +24,6 @@ struct Info {
 
 inline Info getInfo(Level l) {
     switch (l) {
-        case None:
-            return Info("None", 0,0,0);
         case ExtremlyEasy:
             return Info("Extremly Easy", 50, 81, 5);
         case Easy:

@@ -9,9 +9,19 @@ GenSudoku::GenSudoku( const GenSudoku &obj ) {
     index = obj.index;
 }
 
+GenSudoku::GenSudoku( Sudoku &obj ) {
+    std::memcpy(field, obj.getField() , sizeof(field));
+    index = 0;
+}
+
 void GenSudoku::moveNext() {
     while(field[index] != NAF && !isIndexLast() )
         index++;
+}
+
+void GenSudoku::resetIndex() {
+    index = 0;
+    moveNext();
 }
 
 bool GenSudoku::isIndexLast() {
@@ -20,6 +30,13 @@ bool GenSudoku::isIndexLast() {
             return false;
     }
     return true;
+}
+
+GenSudoku GenSudoku::digClone(int index) {
+    GenSudoku ret(*this);
+    ret.field[index] = NAF;
+    ret.setIndex(index);
+    return ret;
 }
 
 bool* GenSudoku::rule1_cols(bool* possible) const {
@@ -66,4 +83,43 @@ std::list<GenSudoku> GenSudoku::expand() {
         }
     }
     return ret;
+}
+
+std::vector<char> GenSudoku::getAvailable() {
+    bool possible[9];
+    std::memset(possible, true, sizeof(possible));
+    std::memcpy(possible, rule1_cols(rule2_rows(rule3_block(possible))), sizeof(possible));
+
+    std::vector<char> ret;
+    for(char i=1; i<9; i++) {
+        if(*(possible+i-1))
+            ret.push_back(i);
+    }
+    return ret;
+}
+
+int GenSudoku::getTotalCells() {
+    int count = 0;
+    for(const char &cell : field)
+        if( cell != NAF )
+            count++;
+    return count;
+}
+
+int GenSudoku::getLowerBoundRC() {
+    int lowerBound = 9;
+    for(size_t i=0; i<9; i++) {
+        int countR = 0, countC = 0;
+        for(size_t j=0; j<9; j++) {
+            if(field[i*9+j] != NAF)
+                countR++;
+            if(field[j*9+i] != NAF)
+                countC++;
+        }
+        lowerBound = std::min({countC, countR, lowerBound});
+        if(lowerBound==0)
+            break;
+    }
+
+    return lowerBound;
 }

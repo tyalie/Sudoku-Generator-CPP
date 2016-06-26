@@ -5,6 +5,8 @@
 #include <sstream>
 #include <string>
 
+#define STATIC_INDEX(x,y) (x + 9 * y)
+
 class Sudoku {
 protected:
     char field[TOTAL];
@@ -14,6 +16,10 @@ public:
     }
 
     ~Sudoku() {
+    }
+
+    Sudoku(const Sudoku &obj) {
+        std::memcpy(field, obj.field, sizeof(field));
     }
 
     char getAtIndex(size_t i) const {
@@ -44,6 +50,10 @@ public:
         }
         out<<"\n";
         return out.str();
+    }
+
+    char* getField() {
+        return field;
     }
 };
 

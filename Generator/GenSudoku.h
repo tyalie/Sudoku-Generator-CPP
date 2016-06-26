@@ -1,8 +1,12 @@
 #ifndef GENSUDOKU_H
 #define GENSUDOKU_H
 
+#include "Commons/common.h"
 #include "Sudoku/Sudoku.h"
+
+#include <algorithm>
 #include <list>
+#include <vector>
 #include <iostream>
 
 class GenSudoku : public Sudoku {
@@ -20,6 +24,11 @@ public:
 
     GenSudoku(const GenSudoku &obj );
 
+    GenSudoku( Sudoku &obj ); 
+
+    int getIndex() {return index;}
+    void setIndex(int i) {index = i;}
+
     char getAtIndex() { return field[index]; }
     void setAtIndex(char v) { field[index] = v; }
 
@@ -27,7 +36,14 @@ public:
 
     bool isIndexLast();
     void moveNext();
+    void resetIndex();
 
     std::list<GenSudoku> expand();
+    std::vector<char> getAvailable();
+
+    GenSudoku digClone(int);
+
+    int getTotalCells();
+    int getLowerBoundRC();
 };
 #endif

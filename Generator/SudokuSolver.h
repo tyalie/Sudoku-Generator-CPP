@@ -13,21 +13,30 @@ private:
 public:
     static bool DFSLV(GenSudoku&, int);
 
-    static int solutions(GenSudoku &sudoku) {
-        return DFS(sudoku, true);
+    static int solutions(GenSudoku sudoku) {
+        GenSudoku su(sudoku);
+        return DFS(su, true);
     }
 
-    static bool solvable(GenSudoku &sudoku) {
-        return DFS(sudoku, false) > 0;
+    static bool solvable(GenSudoku sudoku) {
+        GenSudoku su(sudoku);
+        return DFS(su, false) > 0;
     }
 
-    static Sudoku getLastField() {
+    static bool success() {
+        return lastField;
+    }
+
+    static GenSudoku getLastField() {
         cSol = 0;
-        std::cout << lastField->toString() << std::endl;
-
-        GenSudoku last = *lastField;
-        delete lastField;
-        return last;
+        if(lastField) {
+            GenSudoku last = *lastField;
+            delete lastField;
+            lastField = nullptr;
+            return last;
+        } else {
+            return GenSudoku();
+        }
     }
 };
 

@@ -1,7 +1,5 @@
 #include "SudokuSolver.h"
 
-#include <iostream>
-
 int SudokuSolver::cSol = 0;
 GenSudoku* SudokuSolver::lastField = nullptr;
 
@@ -27,7 +25,11 @@ bool SudokuSolver::DFSLV(GenSudoku &obj, int maxSol) {
     obj.moveNext();
 
     if(obj.isIndexLast()) {
-        lastField = new GenSudoku(obj);
+        if(cSol+1 == maxSol) {
+            if(lastField)
+                delete(lastField);
+            lastField = new GenSudoku(obj);
+        }
         return true;
     }
 
@@ -36,9 +38,8 @@ bool SudokuSolver::DFSLV(GenSudoku &obj, int maxSol) {
         return 0;
 
     for(std::list<GenSudoku>::iterator i = gs.begin(); i!=gs.end(); ++i) {
-        if(DFSLV(*i, maxSol)) {
+        if(DFSLV(*i, maxSol))
             cSol++;
-        }
         if(cSol >= maxSol)
             return 0;
     }
