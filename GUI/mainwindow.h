@@ -6,7 +6,7 @@
 #include <iostream>
 #include <QMainWindow>
 #include <QString>
-#include <qDebug>
+//#include <qDebug>
 #include <array>
 
 namespace Ui {
@@ -19,10 +19,10 @@ class MainWindow : public QMainWindow {
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    
+
 public slots:
     void debugEdit(const QString& text) {
-        qDebug() << text;
+        //qDebug() << text;
     }
 
 private:
