@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
 
     QObject::connect(ui->genButton, SIGNAL(clicked()), this, SLOT(generate()));
+    QObject::connect(ui->clearB, SIGNAL(clicked()), this, SLOT(clear()));
 }
 
 MainWindow::~MainWindow() {

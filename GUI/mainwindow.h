@@ -42,14 +42,21 @@ public:
 
 public slots:
     void generate() {
+        showMessage("Generate Button pressed. Gen starting");
         std::srand(std::time(0));
         Level l = static_cast<Level>(ui->difficultyList->currentIndex());
 
         manager->sudoku = StaticGenerator(l);;
 
         manager->updateField();
+        showMessage("Generate sequence ended successfully\n");
     }
 
+    void clear() {
+        showMessage("Clear Button pressed\n");
+        manager->sudoku = GenSudoku();
+        manager->updateField();
+    }
 
 };
 

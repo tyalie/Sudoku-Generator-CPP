@@ -73,6 +73,8 @@ bool SudokuGen::isUnique(GenSudoku tmp,char orig) {
 }
 
 Sudoku SudokuGen::digHoles(GenSudoku in, Level level) {
+    showMessage("Starting Digging Holes");
+
     std::srand(std::time(0));
     std::bitset<81> possible;
 
@@ -99,7 +101,8 @@ Sudoku SudokuGen::digHoles(GenSudoku in, Level level) {
             in = tmp;
         possible[i] = true;
     }
-    std::cout << std::endl;
+    showMessage("Digging holes at level "+info.name + " successfull with: TC-"+
+            std::to_string(in.getTotalCells())+" RC-"+std::to_string(in.getLowerBoundRC()));
 
     return in;
 }

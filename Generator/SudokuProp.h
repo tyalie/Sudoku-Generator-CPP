@@ -1,6 +1,7 @@
 #ifndef SUDOKUPROP_H
 #define SUDOKUPROP_H
 
+#include "Commons/common.h"
 #include "Generator/GenSudoku.h"
 
 #include <cstdlib>

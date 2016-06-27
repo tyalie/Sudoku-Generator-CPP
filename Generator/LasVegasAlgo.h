@@ -11,8 +11,9 @@
 #include <list>
 
 inline GenSudoku LasVegasAlgo() {
+    showMessage("Starting Las-Vegas-Algorithm");
     while (true) {
-        std::srand(std::time(0));
+        std::srand(time(nullptr));
 
         GenSudoku terminal;
         terminal.Sudoku::setAtIndex(0, (std::rand()%9)+1 );
@@ -30,8 +31,10 @@ inline GenSudoku LasVegasAlgo() {
         terminal.resetIndex();
         SudokuSolver::DFSLV(terminal, time(0), 200, std::rand()%10000 );
 
-        if(SudokuSolver::success())
+        if(SudokuSolver::success()) {
             return SudokuSolver::getLastField();
+        } else
+            showMessage("LasVegas - sudoku was not solvable in time");
     }
 }
 

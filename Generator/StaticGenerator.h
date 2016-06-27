@@ -13,9 +13,12 @@ inline Sudoku StaticGenerator(Level l) {
         genSu = SudokuGen::digHoles(static_cast<GenSudoku>(genSu), l);
 
         if( static_cast<GenSudoku>(genSu).getTotalCells() <= getInfo(l).maxTotalGiven ) {
+            showMessage("StaticGenerator - Sudoku accepted");
             genSu = SudokuProp::propagate(genSu, 300);
             return genSu;
-        }
+        } else
+            showMessage("StaticGenerator - Sudoku dismissed with level " + getInfo(l).name
+                + " and TC-" + std::to_string(static_cast<GenSudoku>(genSu).getTotalCells()));
     }
 }
 

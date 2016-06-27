@@ -69,6 +69,7 @@ bool SudokuProp::prop4_GridRoll(Sudoku &in, unsigned int deg) {
 
 
 Sudoku SudokuProp::propagate(Sudoku in, int steps) {
+    showMessage("Started propagating with " + std::to_string(steps) + " steps");
     Sudoku ret(in);
     std::srand(std::time(0));
 

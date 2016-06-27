@@ -8,14 +8,13 @@ int SudokuSolver::DFS(GenSudoku &obj, bool end) {
     if( obj.isIndexLast() )
         return 1;
 
-
-
     int sum = 0;
 
     std::vector<char> v = obj.getAvailable();
     if(v.size() == 0)
         return 0;
 
+    int i = obj.getIndex();
     for(char item : v) {
         obj.setAtIndex(item);
         int ret = DFS(obj, end);
@@ -25,19 +24,9 @@ int SudokuSolver::DFS(GenSudoku &obj, bool end) {
             else
                 sum+=ret;
         }
+        obj.setIndex(i);
         obj.setAtIndex(0);
-        obj.moveNext();
     }
-        /*std::list<GenSudoku> gs = obj.expand();
-        if(gs.size() == 0)
-            return 0;
-
-
-        for(std::list<GenSudoku>::iterator i = gs.begin(); i!=gs.end(); ++i) {
-            sum += DFS(*i, end);
-            if(!end && sum!=0)
-                break;
-        }*/
     return sum;
 }
 
@@ -48,7 +37,7 @@ bool SudokuSolver::DFSLV(GenSudoku &obj,long start, int max,  int maxSol) {
         return false;
 
     if(obj.isIndexLast()) {
-        if(cSol+1 == maxSol) {
+        if(cSol < maxSol) {
             if(lastField)
                 delete(lastField);
             lastField = new GenSudoku(obj);
@@ -56,6 +45,21 @@ bool SudokuSolver::DFSLV(GenSudoku &obj,long start, int max,  int maxSol) {
         return true;
     }
 
+    std::vector<char> v = obj.getAvailable();
+    if(v.size() == 0)
+        return 0;
+
+    int i = obj.getIndex();
+    for(char item : v) {
+        obj.setAtIndex(item);
+        if(DFSLV(obj, start, max, maxSol))
+            cSol++;
+        obj.setIndex(i);
+        obj.setAtIndex(0);
+        if(cSol >= maxSol)
+            return 0;
+    }
+/*
     std::list<GenSudoku> gs = obj.expand();
     if(gs.size() == 0)
         return 0;
@@ -65,6 +69,6 @@ bool SudokuSolver::DFSLV(GenSudoku &obj,long start, int max,  int maxSol) {
             cSol++;
         if(cSol >= maxSol)
             return 0;
-    }
+    } */
     return 0;
 }

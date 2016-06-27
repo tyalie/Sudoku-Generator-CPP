@@ -91,7 +91,7 @@ std::vector<char> GenSudoku::getAvailable() {
     std::memcpy(possible, rule1_cols(rule2_rows(rule3_block(possible))), sizeof(possible));
 
     std::vector<char> ret;
-    for(char i=1; i<9; i++) {
+    for(char i=1; i<=9; i++) {
         if(*(possible+i-1))
             ret.push_back(i);
     }
