@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QGuiApplication>
 #include <iostream>
 
 #include <list>
@@ -9,10 +10,17 @@
 #include "Generator/SudokuSolver.h"
 #include "Generator/LasVegasAlgo.h"
 #include "Generator/SudokuProp.h"
+#include "Saver/SaveVector.h"
+#include "Saver/SaveIMG.h"
+
+#include <QString>
+#include <QRegExp>
+
 
 #define elif else if
 
 int main(int argc, char *argv[]) {
+
     int mode = 0;
 
     if(mode == 0) {
@@ -80,6 +88,21 @@ int main(int argc, char *argv[]) {
 
         std::memcpy(su.getField(), field, sizeof(char)*81);
         std::cout << printBool(SudokuSolver::solvable(su)) << std::endl;
+    } elif(mode == 5) {
+        QGuiApplication a(argc, argv);
+        Sudoku su = LasVegasAlgo();
+        SaveVector::SavePDF(su, "/Users/Georg/Desktop/out.pdf");
+        SaveVector::SaveSVG(su, "/Users/Georg/Desktop/out.svg");
+
+        SaveIMG::save(su, "/Users/Georg/Desktop/out.png");
+        SaveIMG::save(su, "/Users/Georg/Desktop/out.tiff");
+        SaveIMG::save(su, "/Users/Georg/Desktop/out.jpg");
+    } elif(mode == 6) {
+        QVector<QString> tests;
+        tests << "bla.png" << "png.jpg" << ".png.pdf" << ".jpg.pdf";
+        for(QString &test : tests) {
+            std::cout << printBool(test.contains(QRegExp("\\.(?:png|jpg)$"))) << std::endl;
+        }
     }
 
     return 0;

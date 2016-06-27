@@ -27,12 +27,17 @@ file(GLOB Sudoku_SRC
 
     "Generator/*.h"
     "Generator/*.cpp"
+
+    "Saver/*.h"
+    "Saver/*.cpp"
 )
 
 set(SOURCE_FILES ${Sudoku_SRC})
 
 
-find_package(Qt5Widgets)
+find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Svg REQUIRED)
+find_package(Qt5PrintSupport REQUIRED)
 
 add_executable(Sudoku ${SOURCE_FILES})
-target_link_libraries(Sudoku Qt5::Widgets)
+target_link_libraries(Sudoku Qt5::Widgets Qt5::Svg Qt5::PrintSupport)

@@ -51,7 +51,10 @@
              <item>
               <widget class="QPushButton" name="genButton">
                <property name="text">
-                <string>&amp;Generate</string>
+                <string>Generate</string>
+               </property>
+               <property name="shortcut">
+                <string>Alt+D</string>
                </property>
               </widget>
              </item>
@@ -170,7 +173,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="saveB">
+       <widget class="QPushButton" name="saveButton">
         <property name="text">
          <string>Save</string>
         </property>
@@ -211,6 +214,11 @@
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="saveB">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

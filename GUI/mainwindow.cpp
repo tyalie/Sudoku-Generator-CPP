@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QObject::connect(ui->solveB, SIGNAL(clicked()), this, SLOT(solve()));
     QObject::connect(ui->solveAllB, SIGNAL(clicked()), this, SLOT(solveAll()));
     QObject::connect(ui->quitB, SIGNAL(clicked()), this, SLOT(quitB()));
+    QObject::connect(ui->saveButton, SIGNAL(clicked()), this, SLOT(saveB()));
 }
 
 MainWindow::~MainWindow() {

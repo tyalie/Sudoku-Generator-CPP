@@ -6,6 +6,7 @@
 
 #include "GUI/QLineEditID.h"
 #include "GUI/FieldManager.h"
+#include "Saver/SaveHandler.h"
 
 
 #include "Generator/LasVegasAlgo.h"
@@ -61,6 +62,11 @@ public slots:
     void solveAll();
     void handleFinished();
 
+
+    void saveB() {
+        showMessage("Save Button pressed\n");
+        SaveHandler saveH(manager->sudoku, this);
+    }
 
     void clear() {
         showMessage("Clear Button pressed\n");
