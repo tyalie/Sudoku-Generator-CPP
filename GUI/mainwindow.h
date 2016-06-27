@@ -14,11 +14,17 @@
 #include "Generator/SudokuSolver.h"
 #include "Generator/GenSudoku.h"
 #include "Generator/StaticGenerator.h"
+#include "GUI/ThreadManager.h"
+#include "GUI/ThreadTrigger.h"
 
 #include <QMainWindow>
 #include <QString>
 #include <QGridLayout>
 #include <QObject>
+#include <QMessageBox>
+#include <QFutureWatcher>
+#include <QFuture>
+#include <QtConcurrent/QtConcurrentRun>
 
 #include <string>
 #include <iostream>
@@ -36,21 +42,25 @@ private:
     Ui::MainWindow *ui;
     FieldManager* manager;
 
+    QFuture<ReturnType> future;
+    QFutureWatcher<ReturnType> *watcher;
+    ThreadManager *tm;
+
+    void startWithFuture(QFuture<ReturnType> mFuture);
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+
 public slots:
-    void generate() {
-        showMessage("Generate Button pressed. Gen starting");
-        std::srand(std::time(0));
-        Level l = static_cast<Level>(ui->difficultyList->currentIndex());
 
-        manager->sudoku = StaticGenerator(l);;
+    void generate();
+    void terminalPattern();
+    void solve();
+    void solveAll();
+    void handleFinished();
 
-        manager->updateField();
-        showMessage("Generate sequence ended successfully\n");
-    }
 
     void clear() {
         showMessage("Clear Button pressed\n");
@@ -58,6 +68,10 @@ public slots:
         manager->updateField();
     }
 
+    void quitB() {
+        showMessage("Goodbye!\n\n");
+        QApplication::quit();
+    }
 };
 
 #endif // MAINWINDOW_H

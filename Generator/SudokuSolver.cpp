@@ -4,6 +4,9 @@ int SudokuSolver::cSol = 0;
 GenSudoku* SudokuSolver::lastField = nullptr;
 
 int SudokuSolver::DFS(GenSudoku &obj, bool end) {
+    if(__abort__)
+        throw std::exception();
+
     obj.moveNext();
     if( obj.isIndexLast() )
         return 1;
@@ -31,6 +34,9 @@ int SudokuSolver::DFS(GenSudoku &obj, bool end) {
 }
 
 bool SudokuSolver::DFSLV(GenSudoku &obj,long start, int max,  int maxSol) {
+    if(__abort__)
+        throw std::exception();
+
     obj.moveNext();
 
     if( (time(0)-start)>max && max>0)
@@ -59,16 +65,5 @@ bool SudokuSolver::DFSLV(GenSudoku &obj,long start, int max,  int maxSol) {
         if(cSol >= maxSol)
             return 0;
     }
-/*
-    std::list<GenSudoku> gs = obj.expand();
-    if(gs.size() == 0)
-        return 0;
-
-    for(std::list<GenSudoku>::iterator i = gs.begin(); i!=gs.end(); ++i) {
-        if(DFSLV(*i,start, max, maxSol))
-            cSol++;
-        if(cSol >= maxSol)
-            return 0;
-    } */
     return 0;
 }

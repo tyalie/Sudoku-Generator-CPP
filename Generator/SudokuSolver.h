@@ -1,7 +1,8 @@
 #ifndef SUDOKUSOLVER_H
 #define SUDOKUSOLVER_H
 
-#include "GenSudoku.h"
+#include "Generator/GenSudoku.h"
+#include "GUI/ThreadManager.h"
 #include <vector>
 
 class SudokuSolver {
@@ -30,15 +31,21 @@ public:
     }
 
     static GenSudoku getLastField() {
-        cSol = 0;
         if(lastField) {
             GenSudoku last = *lastField;
-            delete lastField;
-            lastField = nullptr;
+            cleanUp();
             return last;
         } else {
             return GenSudoku();
         }
+    }
+
+    static void cleanUp() {
+        if(lastField) {
+            delete lastField;
+        }
+        lastField = nullptr;
+        cSol = 0;
     }
 };
 

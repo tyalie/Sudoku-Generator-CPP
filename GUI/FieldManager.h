@@ -21,6 +21,7 @@ class FieldManager : public QObject {
 private:
     QGridLayout* field;
     std::array<QLineEditID*,81> items;
+    bool currentlyUpdating = false;
 
 public:
     Sudoku sudoku;
@@ -30,16 +31,26 @@ public:
 
 public slots:
     void debugEdit(const QString& text) {
-        //std::cout << text.toUtf8().constData() << std::endl;
+        QLineEditID* send = dynamic_cast<QLineEditID*>(sender());
+        if (send && !currentlyUpdating) {
+            int val = 0;
+            if(text.length()>0)
+                val = text.toInt();
+
+            sudoku.setAtIndex(send->getID(), val);
+            showMessage("Sudoku edited to fit change at id "+std::to_string(send->getID()));
+        }
     }
 
     void updateField() {
+        currentlyUpdating = true;
         for(QLineEditID* i : items) {
             QString tmp("");
             if(sudoku.getAtIndex(i->getID()) != NAF)
                 tmp = QString::number(sudoku.getAtIndex(i->getID()));
             i->setText(tmp);
         }
+        currentlyUpdating = false;
     }
 };
 

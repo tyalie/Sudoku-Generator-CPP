@@ -9,8 +9,7 @@ GenSudoku::GenSudoku( const GenSudoku &obj ) {
     index = obj.index;
 }
 
-GenSudoku::GenSudoku( Sudoku &obj ) {
-    std::memcpy(field, obj.getField() , sizeof(field));
+GenSudoku::GenSudoku( Sudoku &obj ) : Sudoku(obj) {
     index = 0;
 }
 

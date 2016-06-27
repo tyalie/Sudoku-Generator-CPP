@@ -10,7 +10,15 @@
 class Sudoku {
 protected:
     char field[TOTAL];
+    bool invalidated = false;
+
 public:
+    bool isInvalid() {return invalidated;}
+
+    Sudoku(bool inval) {
+        invalidated = true;
+    }
+
     Sudoku() {
         std::memset(field, NAF, sizeof(field));
     }
@@ -20,6 +28,7 @@ public:
 
     Sudoku(const Sudoku &obj) {
         std::memcpy(field, obj.field, sizeof(field));
+        invalidated = obj.invalidated;
     }
 
     char getAtIndex(size_t i) const {
