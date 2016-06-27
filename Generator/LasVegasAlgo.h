@@ -3,6 +3,9 @@
 
 #include "Commons/common.h"
 
+#include "Generator/GenSudoku.h"
+#include "Generator/SudokuSolver.h"
+
 #include <cstdlib>
 #include <ctime>
 #include <list>
@@ -25,7 +28,7 @@ inline GenSudoku LasVegasAlgo() {
         }
 
         terminal.resetIndex();
-        SudokuSolver::DFSLV(terminal, std::rand()%10000 );
+        SudokuSolver::DFSLV(terminal, time(0), 200, std::rand()%10000 );
 
         if(SudokuSolver::success())
             return SudokuSolver::getLastField();

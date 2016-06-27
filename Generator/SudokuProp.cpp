@@ -58,12 +58,15 @@ bool SudokuProp::prop4_GridRoll(Sudoku &in, unsigned int deg) {
                     i = STATIC_INDEX(y, 9 - x - 1);
                     break;
             }
-            // Need to flip solved one and current one.
             in.setAtIndex(i, su.getAtIndex( STATIC_INDEX(x, y) ));
         }
     }
     return true;
 }
+
+#include <iostream>
+
+
 
 Sudoku SudokuProp::propagate(Sudoku in, int steps) {
     Sudoku ret(in);
@@ -71,7 +74,6 @@ Sudoku SudokuProp::propagate(Sudoku in, int steps) {
 
     while(steps>0) {
         bool get = false;
-
         switch(std::rand()%3 ) {
             case 0:
                 get = prop2_2ColumnInBlock(ret, std::rand()%3, std::rand()%3, std::rand()%3);

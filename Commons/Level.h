@@ -25,7 +25,7 @@ struct Info {
 inline Info getInfo(Level l) {
     switch (l) {
         case ExtremlyEasy:
-            return Info("Extremly Easy", 50, 81, 5);
+            return Info("Extremly Easy", 50, 75, 5);
         case Easy:
             return Info("Easy", 36, 39, 4);
         case Medium:

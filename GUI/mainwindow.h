@@ -1,13 +1,29 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "QLineEditID.h"
+#include "ui_mainwindow.h"
+#include "Commons/common.h"
 
-#include <iostream>
+#include "GUI/QLineEditID.h"
+#include "GUI/FieldManager.h"
+
+
+#include "Generator/LasVegasAlgo.h"
+#include "Generator/SudokuGen.h"
+#include "Generator/SudokuProp.h"
+#include "Generator/SudokuSolver.h"
+#include "Generator/GenSudoku.h"
+#include "Generator/StaticGenerator.h"
+
 #include <QMainWindow>
 #include <QString>
-//#include <qDebug>
-#include <array>
+#include <QGridLayout>
+#include <QObject>
+
+#include <string>
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 namespace Ui {
 class MainWindow;
@@ -16,18 +32,25 @@ class MainWindow;
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
+private:
+    Ui::MainWindow *ui;
+    FieldManager* manager;
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
 public slots:
-    void debugEdit(const QString& text) {
-        //qDebug() << text;
+    void generate() {
+        std::srand(std::time(0));
+        Level l = static_cast<Level>(ui->difficultyList->currentIndex());
+
+        manager->sudoku = StaticGenerator(l);;
+
+        manager->updateField();
     }
 
-private:
-    std::array<QLineEditID*,81> items;
-    Ui::MainWindow *ui;
+
 };
 
 #endif // MAINWINDOW_H

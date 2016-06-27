@@ -2,6 +2,7 @@
 #define SUDOKUSOLVER_H
 
 #include "GenSudoku.h"
+#include <vector>
 
 class SudokuSolver {
 private:
@@ -11,7 +12,7 @@ private:
     static GenSudoku* lastField;
 
 public:
-    static bool DFSLV(GenSudoku&, int);
+    static bool DFSLV(GenSudoku&, long, int, int);
 
     static int solutions(GenSudoku sudoku) {
         GenSudoku su(sudoku);
@@ -20,6 +21,7 @@ public:
 
     static bool solvable(GenSudoku sudoku) {
         GenSudoku su(sudoku);
+        su.setIndex(0);
         return DFS(su, false) > 0;
     }
 

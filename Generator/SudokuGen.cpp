@@ -94,11 +94,12 @@ Sudoku SudokuGen::digHoles(GenSudoku in, Level level) {
         }
 
         GenSudoku tmp = in.digClone(i);
-        if( isUnique(tmp, in.Sudoku::getAtIndex(i) ) && in.getTotalCells() >= minBound
-                && in.getLowerBoundRC() >= info.minGivenRC)
+        if( isUnique(tmp, in.Sudoku::getAtIndex(i) ) && tmp.getTotalCells() >= info.minTotalGiven
+                && tmp.getLowerBoundRC() >= info.minGivenRC)
             in = tmp;
         possible[i] = true;
     }
+    std::cout << std::endl;
 
     return in;
 }

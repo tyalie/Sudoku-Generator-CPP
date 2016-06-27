@@ -13,7 +13,7 @@
 #define elif else if
 
 int main(int argc, char *argv[]) {
-    int mode = 2;
+    int mode = 0;
 
     if(mode == 0) {
         QApplication a(argc, argv);
@@ -32,10 +32,10 @@ int main(int argc, char *argv[]) {
         //for(std::list<GenSudoku>::iterator i=ret.begin(); i!=ret.end(); i++)
         //    std::cout<< i->toString() << std::endl;
 
-        SudokuSolver::DFSLV(s, 1);
+        SudokuSolver::DFSLV(s,0,-1, 1);
         std::cout << SudokuSolver::getLastField().toString() << std::endl;
 
-        SudokuSolver::DFSLV(s, 10000);
+        SudokuSolver::DFSLV(s,0,-1,  10000);
         std::cout << SudokuSolver::getLastField().toString() << std::endl;
     } elif (mode == 2) {
         Sudoku su = SudokuGen::digHoles(LasVegasAlgo(), Level::Evil);
@@ -45,6 +45,41 @@ int main(int argc, char *argv[]) {
         su = SudokuProp::propagate(su, 10);
         std::cout << SudokuSolver::solutions(GenSudoku(su)) << std::endl;
         std::cout << su.toString() << std::endl;
+    } elif (mode == 3) {
+        GenSudoku su;
+        char field[81] = {
+                3,1,4,5,6,2,7,8,9,
+                2,5,6,9,7,8,1,3,4,
+                7,9,8,3,1,4,2,5,6,
+                1,2,7,8,9,3,4,6,5,
+                5,6,9,2,4,7,3,1,8,
+                4,8,3,1,5,6,9,2,7,
+                9,7,2,6,8,1,5,4,3,
+                8,4,1,7,3,5,6,9,2,
+                6,3,5,4,2,9,8,7,1};
+        std::memcpy(su.getField(), field, sizeof(char)*81);
+
+        Sudoku retS = SudokuGen::digHoles(su, Evil);
+        GenSudoku ret = static_cast<GenSudoku>(retS);
+        std::cout << ret.getTotalCells() << std::endl;
+
+        // He gets 25
+    } elif(mode == 4) {
+        GenSudoku su;
+        char field[81] = {
+                0,0,0,0,0,0,0,0,0,
+                0,0,0,5,7,8,1,3,4,
+                7,9,8,3,1,4,2,5,6,
+                1,2,7,8,9,3,4,6,5,
+                5,6,9,2,4,7,3,1,8,
+                4,8,3,1,5,6,9,2,7,
+                9,7,2,6,8,1,5,4,3,
+                8,4,1,7,3,5,6,9,2,
+                6,3,5,4,2,9,8,7,1
+        };
+
+        std::memcpy(su.getField(), field, sizeof(char)*81);
+        std::cout << printBool(SudokuSolver::solvable(su)) << std::endl;
     }
 
     return 0;

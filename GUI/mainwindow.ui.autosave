@@ -51,7 +51,10 @@
              <item>
               <widget class="QPushButton" name="genButton">
                <property name="text">
-                <string>&amp;Generate</string>
+                <string>Generate</string>
+               </property>
+               <property name="shortcut">
+                <string>Alt+D</string>
                </property>
               </widget>
              </item>

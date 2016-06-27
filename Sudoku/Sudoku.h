@@ -5,7 +5,7 @@
 #include <sstream>
 #include <string>
 
-#define STATIC_INDEX(x,y) (x + 9 * y)
+#define STATIC_INDEX(x,y) ( (x) + 9 * (y))
 
 class Sudoku {
 protected:
