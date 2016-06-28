@@ -1,16 +1,22 @@
-# Minimal CMake Template for Qt 5 Projects
+# Sudoku Generator in C++
+<p>This Sudoku Generator is an application programmed in C++ and the help of QT5. 
+The algorithmic is based on the paper <a href="http://zhangroup.aporc.org/images/files/Paper_3485.pdf">Sudoku Puzzles Generating: from Easy to Evil</a> and the underlying cmake folder structure was provided by <a href="https://github.com/euler0/mini-cmake-qt">mini-cmake-qt</a> (I gave up on doing it by myself).
+The program code is in parts equal to my previous project <a href="https://github.com/Gansgar/Sudoku-Generator">Sudoku Generator</a>. This project now is fundamentaly the same, but uses the supperior features of C++11 over Java and Qt5 over Swing.</p>
 
-[As I've briefly introduced](http://euler.kr/trl/2014/08/19/minimal-cmake-template.html), this is a minimal, but complete and production-ready CMake project template for Qt 5 projects. This may be a starting point for your new application. If that is not intent to be a cross-platform project, you can clean up that stuffs (such as OS X bundle) from the template.
+##Features
+<p>The features of the this project are extending the feature list of the Java implementation by introducing stack generation for OpenSudoku and a larger amount of available export formats (like *.png, *.jpg, *.svg, …).</p>
 
-If you want to deploy your application on OS X, I would recommend you have to read below document.
+<p>
+Most features are listed below:
+<ul>
+    <li>Sudoku Generation on various difficulties</li>
+    <li>Sudoku Solving</li>
+    <li>Live sudoku validation</li>
+    <li>Fast sudoku type in</li>
+    <li>Saving the current sudoku</li>
+    <li>Stackgeneration of sudokus in <i>OpenSudoku</i> format</li>
+</ul>
+</p>
 
-[Deploying an Application on Mac OS X (The Mac Deployment Tool)](http://qt-project.org/doc/qt-4.8/deployment-mac.html#the-mac-deployment-tool)
-
-## Features
-  * Handling all possible Qt stuffs (UI, resources, ~~translations~~)
-  * OS X bundle
-  * Windows executable icon
-
-## References
-  * CMake manual: http://qt-project.org/doc/qt-5.0/qtdoc/cmake-manual.html
-  * Using CMake with Qt 5: http://www.kdab.com/using-cmake-with-qt-5/
+##<i><a href="http://opensudoku.moire.org">OpenSudoku</a></i> support
+<b><i>OpenSudoku</i> Support only means export of sudokus. There's no import feature in this application</b>
