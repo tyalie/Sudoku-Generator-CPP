@@ -39,7 +39,7 @@ bool SudokuSolver::DFSLV(GenSudoku &obj,long start, int max,  int maxSol) {
 
     obj.moveNext();
 
-    if( (time(0)-start)>max && max>0)
+    if( (time(0)-start)>=max && max>0)
         return false;
 
     if(obj.isIndexLast()) {

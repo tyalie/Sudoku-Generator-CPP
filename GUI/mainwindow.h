@@ -7,6 +7,7 @@
 #include "GUI/QLineEditID.h"
 #include "GUI/FieldManager.h"
 #include "Saver/SaveHandler.h"
+#include "Saver/StackSave.h"
 
 
 #include "Generator/LasVegasAlgo.h"
@@ -26,6 +27,8 @@
 #include <QFutureWatcher>
 #include <QFuture>
 #include <QtConcurrent/QtConcurrentRun>
+#include <QInputDialog>
+#include <climits>
 
 #include <string>
 #include <iostream>
@@ -61,7 +64,7 @@ public slots:
     void solve();
     void solveAll();
     void handleFinished();
-
+    void stackB();
 
     void saveB() {
         showMessage("Save Button pressed\n");

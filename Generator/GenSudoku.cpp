@@ -97,6 +97,24 @@ std::vector<char> GenSudoku::getAvailable() {
     return ret;
 }
 
+std::bitset<81> GenSudoku::getInvalid() {
+    std::bitset<81> cells;
+
+    for(int i=0;i<81;i++) {
+        index = i;
+        if(getAtIndex()) {
+            char tmp = getAtIndex();
+            setAtIndex(0);
+            std::vector<char> v = getAvailable();
+            if(std::find(v.begin(), v.end(), tmp) == v.end())
+                cells[i] = true;
+            setAtIndex(tmp);
+        }
+    }
+
+    return cells;
+}
+
 int GenSudoku::getTotalCells() {
     int count = 0;
     for(const char &cell : field)

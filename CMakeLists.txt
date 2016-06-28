@@ -38,6 +38,7 @@ set(SOURCE_FILES ${Sudoku_SRC})
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Svg REQUIRED)
 find_package(Qt5PrintSupport REQUIRED)
+find_package(Qt5Concurrent REQUIRED)
 
 add_executable(Sudoku ${SOURCE_FILES})
-target_link_libraries(Sudoku Qt5::Widgets Qt5::Svg Qt5::PrintSupport)
+target_link_libraries(Sudoku Qt5::Widgets Qt5::Svg Qt5::PrintSupport Qt5::Concurrent)

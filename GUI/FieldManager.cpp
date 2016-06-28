@@ -26,11 +26,15 @@ FieldManager::FieldManager(QGridLayout* f) {
         a->show();
 
         // TODO: this is debug
-        QObject::connect(a, SIGNAL(textChanged(QString)), this, SLOT(debugEdit(QString)));
+        QObject::connect(a, SIGNAL(textEdited(QString)), this, SLOT(debugEdit(QString)));
     }
 
+    pals[0].setColor(items[0]->backgroundRole(), QColor(254, 114, 85));
+    pals[1].setColor(items[0]->backgroundRole(), QColor(0,0,0,0));
+    
     field->setSpacing(0);
     field->update();
+
 }
 
 FieldManager::~FieldManager() {

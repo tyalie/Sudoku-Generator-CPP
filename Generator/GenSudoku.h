@@ -8,6 +8,7 @@
 #include <list>
 #include <vector>
 #include <iostream>
+#include <bitset>
 
 class GenSudoku : public Sudoku {
 private:
@@ -24,7 +25,7 @@ public:
 
     GenSudoku(const GenSudoku &obj );
 
-    GenSudoku( Sudoku &obj ); 
+    GenSudoku( Sudoku &obj );
 
     int getIndex() {return index;}
     void setIndex(int i) {index = i;}
@@ -40,6 +41,7 @@ public:
 
     std::list<GenSudoku> expand();
     std::vector<char> getAvailable();
+    std::bitset<81> getInvalid();
 
     GenSudoku digClone(int);
 

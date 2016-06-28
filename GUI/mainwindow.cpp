@@ -4,6 +4,8 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     manager = new FieldManager(ui->field);
+    manager->changeShort(ui->shortCut->checkState());
+
 
     for(int i = Level::ExtremlyEasy; i<=Level::Evil; i++) {
         Level l = static_cast<Level>(i);
@@ -17,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QObject::connect(ui->solveAllB, SIGNAL(clicked()), this, SLOT(solveAll()));
     QObject::connect(ui->quitB, SIGNAL(clicked()), this, SLOT(quitB()));
     QObject::connect(ui->saveButton, SIGNAL(clicked()), this, SLOT(saveB()));
+    QObject::connect(ui->shortCut, SIGNAL(stateChanged(int)), manager, SLOT(changeShort(int)));
+    QObject::connect(ui->stackB, SIGNAL(clicked()), this, SLOT(stackB()));
 }
 
 MainWindow::~MainWindow() {
@@ -78,4 +82,21 @@ void MainWindow::handleFinished() {
 
     delete watcher;
     showMessage("Sequence ended \n");
+}
+
+// accumulator = (alpha * new_value) + (1.0 - alpha) * accumulator
+
+void MainWindow::stackB() {
+    showMessage("Stack Button pressed");
+    bool ok;
+    int num = QInputDialog::getInt(this, "Stack size",
+        QString("Please input the number of sudokus\n")+
+        QString("that should be generated. Difficulty is: \n") +
+        QString::fromStdString(getInfo(static_cast<Level>(ui->difficultyList->currentIndex())).name), 1, 1, INT_MAX, 1, &ok);
+    if(!ok) {
+        showMessage("User canceled dialog\n");
+        return;
+    }
+
+    StackSave stack(num, static_cast<Level>(ui->difficultyList->currentIndex()));
 }

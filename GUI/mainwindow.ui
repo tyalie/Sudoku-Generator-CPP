@@ -164,7 +164,7 @@
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0,1,0">
+     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0,0,1,0,0">
       <item>
        <widget class="QPushButton" name="clearB">
         <property name="text">
@@ -180,6 +180,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="stackB">
+        <property name="text">
+         <string>Stack Save</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -191,6 +198,28 @@
          </size>
         </property>
        </spacer>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="shortCut">
+        <property name="acceptDrops">
+         <bool>true</bool>
+        </property>
+        <property name="toolTip">
+         <string>If true, the cursor in the sudoku field will also move if backspace was pressed.</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>0</number>
+        </property>
+        <property name="text">
+         <string>Short Input</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <property name="tristate">
+         <bool>false</bool>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QPushButton" name="quitB">

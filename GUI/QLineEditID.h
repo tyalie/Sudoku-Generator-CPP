@@ -15,6 +15,11 @@ public:
     int getID() const {
         return ID;
     }
+
+    void getFocus() {
+        setFocus();
+        selectAll();
+    }
 };
 
 #endif // QLINEEDITID_H

@@ -20,6 +20,5 @@ SaveHandler::SaveHandler( Sudoku su, QWidget *parent) {
     elif(!filter.compare(IMG))
         SaveIMG::save(su, fileName.contains(QRegExp(IMGE))?fileName:(fileName+".png"));
 
-
     std::cout << filter.toUtf8().constData() << std::endl;
 }
