@@ -1,12 +1,12 @@
 #include "Saver/SaveHandler.h"
 
 QString SaveHandler::fileName = "";
+QString SaveHandler::filter = PDF;
 
 SaveHandler::SaveHandler( Sudoku su, QWidget *parent) {
-    QString filter = TXT;
-
     QString path = QFileDialog::getSaveFileName(parent, "Select position to Save",
         fileName,  PDF SP SVG SP IMG SP TXT, &filter);
+
     if(path.length()==0)
         return;
 

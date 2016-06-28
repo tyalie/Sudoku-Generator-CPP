@@ -13,14 +13,14 @@ class SaveIMG : private SaveVector {
 public:
     static void save(Sudoku su, QString path) {
         QImage img(QSize(SIZE(OFFSET, TILESIZE)), QImage::Format_ARGB32);
+        img.fill(qRgba(255,255,2255,0));
+
+        if(path.contains(QRegExp("(?:jpe?g)")))
+            img.fill(qRgba(255,255,2255,255));
+
+
         QPainter painter;
         painter.begin(&img);
-
-        QBrush back(QColor(0,0,0,0));
-        if(path.contains(QRegExp("(?:jpe?g)")))
-            back = QBrush(QColor(0xff,0xff,0xff));
-
-        painter.fillRect(QRectF(0,0, img.width(), img.height()), back);
 
         paint(su, painter, OFFSET, TILESIZE);
         painter.end();

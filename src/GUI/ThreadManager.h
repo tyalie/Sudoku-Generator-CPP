@@ -21,29 +21,9 @@ public:
 
     QMessageBox *msg = nullptr;
 
-    ThreadManager(QWidget* parent) {
-        msg = new QMessageBox;
-        abort = false;
-        msg->setText("You're waiting.");
-        //msg->setModal(true);
-        msg->setWindowModality(Qt::ApplicationModal);
-        msg->setStandardButtons(QMessageBox::Cancel);
-        QCoreApplication::processEvents();
-        msg->show();
-        QCoreApplication::processEvents();
-        QObject::connect(msg, SIGNAL(buttonClicked(QAbstractButton*)),
-            this, SLOT(cancel(QAbstractButton*)));
-    }
-
-    ThreadManager() {
-        abort = false;
-    }
-
-    ~ThreadManager() {
-        if(msg)
-            delete msg;
-        abort = false;
-    }
+    ThreadManager(QWidget*);
+    ThreadManager();
+    ~ThreadManager();
 
 public slots:
     void cancel(QAbstractButton *button = 0) {
