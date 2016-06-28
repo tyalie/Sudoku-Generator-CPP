@@ -26,9 +26,9 @@
 
 class SaveHandler {
 private:
-    static QString fileName;
 
 public:
+    static QString fileName;
     SaveHandler(Sudoku su, QWidget *parent = 0);
 };
 

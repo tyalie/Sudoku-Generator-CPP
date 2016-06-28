@@ -29,12 +29,13 @@ inline GenSudoku LasVegasAlgo() {
             else
                 i--;
         }
-
         terminal.resetIndex();
-        SudokuSolver::DFSLV(terminal, time(0), 1, std::rand()%10000 );
 
-        if(SudokuSolver::success()) {
-            return SudokuSolver::getLastField();
+        SudokuSolver solver;
+        solver.DFSLV(terminal, time(0), 1, std::rand()%10000 );
+
+        if(solver.success()) {
+            return solver.getLastField();
         } else
             showMessage("LasVegas - sudoku was not solvable in time");
     }

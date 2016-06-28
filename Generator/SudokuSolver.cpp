@@ -1,8 +1,5 @@
 #include "SudokuSolver.h"
 
-int SudokuSolver::cSol = 0;
-GenSudoku* SudokuSolver::lastField = nullptr;
-
 int SudokuSolver::DFS(GenSudoku &obj, bool end) {
     if(__abort__)
         throw std::exception();

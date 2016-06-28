@@ -21,6 +21,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QObject::connect(ui->saveButton, SIGNAL(clicked()), this, SLOT(saveB()));
     QObject::connect(ui->shortCut, SIGNAL(stateChanged(int)), manager, SLOT(changeShort(int)));
     QObject::connect(ui->stackB, SIGNAL(clicked()), this, SLOT(stackB()));
+
+    adjustSize();
+    setFixedSize(size());
 }
 
 MainWindow::~MainWindow() {
@@ -88,7 +91,9 @@ void MainWindow::handleFinished() {
 
 void MainWindow::stackB() {
     showMessage("Stack Button pressed");
-    bool ok;
+    StackSaveDialog dialog(this);
+    dialog.exec();
+    /*bool ok;
     int num = QInputDialog::getInt(this, "Stack size",
         QString("Please input the number of sudokus\n")+
         QString("that should be generated. Difficulty is: \n") +
@@ -98,5 +103,5 @@ void MainWindow::stackB() {
         return;
     }
 
-    StackSave stack(num, static_cast<Level>(ui->difficultyList->currentIndex()));
+    StackSave stack(num, static_cast<Level>(ui->difficultyList->currentIndex())); */
 }

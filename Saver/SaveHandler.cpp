@@ -5,8 +5,12 @@ QString SaveHandler::fileName = "";
 SaveHandler::SaveHandler( Sudoku su, QWidget *parent) {
     QString filter = TXT;
 
-    fileName = QFileDialog::getSaveFileName(parent, "Select file to Save",
+    QString path = QFileDialog::getSaveFileName(parent, "Select position to Save",
         fileName,  PDF SP SVG SP IMG SP TXT, &filter);
+    if(path.length()==0)
+        return;
+
+    fileName = path;
 
     if(fileName.endsWith("."))
         fileName.chop(1);
@@ -19,6 +23,4 @@ SaveHandler::SaveHandler( Sudoku su, QWidget *parent) {
         SaveVector::SavePDF(su, fileName);
     elif(!filter.compare(IMG))
         SaveIMG::save(su, fileName.contains(QRegExp(IMGE))?fileName:(fileName+".png"));
-
-    std::cout << filter.toUtf8().constData() << std::endl;
 }

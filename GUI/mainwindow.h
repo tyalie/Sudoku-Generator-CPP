@@ -6,6 +6,7 @@
 
 #include "GUI/QLineEditID.h"
 #include "GUI/FieldManager.h"
+#include "GUI/StackSaveDialog.h"
 #include "Saver/SaveHandler.h"
 #include "Saver/StackSave.h"
 
@@ -28,8 +29,9 @@
 #include <QFuture>
 #include <QtConcurrent/QtConcurrentRun>
 #include <QInputDialog>
-#include <climits>
+#include <QEventLoop>
 
+#include <climits>
 #include <string>
 #include <iostream>
 #include <cstdlib>

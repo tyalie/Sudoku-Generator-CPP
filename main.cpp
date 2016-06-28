@@ -27,9 +27,7 @@ int main(int argc, char *argv[]) {
         QApplication a(argc, argv);
         MainWindow w;
         w.show();
-        w.adjustSize();
-        w.setFixedSize(w.size());
-
+        
         return a.exec();
     } elif (mode == 1) {
         GenSudoku s;
@@ -40,11 +38,11 @@ int main(int argc, char *argv[]) {
         //for(std::list<GenSudoku>::iterator i=ret.begin(); i!=ret.end(); i++)
         //    std::cout<< i->toString() << std::endl;
 
-        SudokuSolver::DFSLV(s,0,-1, 1);
+        /*SudokuSolver::DFSLV(s,0,-1, 1);
         std::cout << SudokuSolver::getLastField().toString() << std::endl;
 
         SudokuSolver::DFSLV(s,0,-1,  10000);
-        std::cout << SudokuSolver::getLastField().toString() << std::endl;
+        std::cout << SudokuSolver::getLastField().toString() << std::endl;*/
     } elif (mode == 2) {
         Sudoku su = SudokuGen::digHoles(LasVegasAlgo(), Level::Evil);
         std::cout << SudokuSolver::solutions(GenSudoku(su)) << std::endl;

@@ -174,6 +174,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="saveButton">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Saves the current sudoku&lt;br/&gt;in following formats:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;PDF&lt;/li&gt;&lt;li&gt;SVG&lt;/li&gt;&lt;li&gt;Text&lt;/li&gt;&lt;li&gt;Image&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string>Save</string>
         </property>
@@ -181,6 +184,12 @@
       </item>
       <item>
        <widget class="QPushButton" name="stackB">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save a stack of sudokus as&lt;br/&gt;OpenSudoku files. &lt;/p&gt;&lt;p&gt;OpenSudoku is an OpenSource&lt;br/&gt;Android application that allows&lt;br/&gt;the import of new sudokus.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>0</number>
+        </property>
         <property name="text">
          <string>Stack Save</string>
         </property>
@@ -205,7 +214,7 @@
          <bool>true</bool>
         </property>
         <property name="toolTip">
-         <string>If true, the cursor in the sudoku field will also move if backspace was pressed.</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If true, the cursor in the sudoku&lt;br/&gt;field will also move if backspace&lt;br/&gt;was pressed. &lt;/p&gt;&lt;p&gt;If the button is not activated the &lt;br/&gt;cursor will only move if a number &lt;br/&gt;was typed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="toolTipDuration">
          <number>0</number>

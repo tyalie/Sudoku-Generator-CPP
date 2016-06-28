@@ -27,7 +27,6 @@ inline ReturnType startGenerator(Level l) {
         ret = StaticGenerator(l);
     } catch (std::exception& e) {
         showMessage("ThreadManager- Generator stoped");
-        SudokuSolver::cleanUp();
         return Sudoku(true);
     }
     return ReturnType(ret);
@@ -41,7 +40,6 @@ inline ReturnType startLasVegas() {
         ret = LasVegasAlgo();
     } catch(std::exception& e) {
         showMessage("ThreadManager- LasVegasAlgo stoped");
-        SudokuSolver::cleanUp();
         return Sudoku(true);
     }
     return ReturnType(ret);
@@ -50,11 +48,13 @@ inline ReturnType startLasVegas() {
 inline ReturnType solveSudoku(GenSudoku in) {
     showMessage("ThreadManager- Start DFSLV");
 
+    SudokuSolver solver;
+
     Sudoku ret(true);
     try {
-        SudokuSolver::DFSLV(in, 0, -1, 1);
-        if(SudokuSolver::success()) {
-            ret = SudokuSolver::getLastField();
+        solver.DFSLV(in, 0, -1, 1);
+        if(solver.success()) {
+            ret = solver.getLastField();
         } else {
             showMessage("ThreadManager- Sudoku couldn't be solved");
             QMessageBox msg;
@@ -62,7 +62,6 @@ inline ReturnType solveSudoku(GenSudoku in) {
         }
     } catch(std::exception& e) {
         showMessage("ThreadManager- DFSLV aborted");
-        SudokuSolver::cleanUp();
     }
     return ReturnType(ret);
 }

@@ -9,11 +9,11 @@ class SudokuSolver {
 private:
     static int DFS(GenSudoku&, bool);
 
-    static int cSol;
-    static GenSudoku* lastField;
+    int cSol;
+    GenSudoku* lastField;
 
 public:
-    static bool DFSLV(GenSudoku&, long, int, int);
+    bool DFSLV(GenSudoku&, long, int, int);
 
     static int solutions(GenSudoku sudoku) {
         GenSudoku su(sudoku);
@@ -26,26 +26,23 @@ public:
         return DFS(su, false) > 0;
     }
 
-    static bool success() {
+
+    SudokuSolver() : cSol(0), lastField(nullptr) {}
+
+    ~SudokuSolver() {
+        if(lastField)
+            delete lastField;
+    }
+
+    bool success() {
         return lastField;
     }
 
-    static GenSudoku getLastField() {
-        if(lastField) {
-            GenSudoku last = *lastField;
-            cleanUp();
-            return last;
-        } else {
+    GenSudoku getLastField() {
+        if(lastField)
+            return *lastField;
+        else
             return GenSudoku();
-        }
-    }
-
-    static void cleanUp() {
-        if(lastField) {
-            delete lastField;
-        }
-        lastField = nullptr;
-        cSol = 0;
     }
 };
 
