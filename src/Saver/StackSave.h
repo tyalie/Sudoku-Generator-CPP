@@ -20,7 +20,7 @@
 #include <string>
 #include <ctime>
 
-#define PROGRESS_TEXT "Create Sudokus. Please wait… "
+#define PROGRESS_TEXT "Create Sudokus. If it takes unproportional long on\n on one sudoku I will get an extra hard one. Please wait… "
 
 struct StackData {
     int number;

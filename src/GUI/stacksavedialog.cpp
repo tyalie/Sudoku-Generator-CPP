@@ -55,8 +55,9 @@ void StackSaveDialog::nameChanged(QString name) {
 
 void StackSaveDialog::dirChanged(QString dir) {
     pureURI = true;
-    if(!dir.contains(QRegExp("\\/[^\\/]*\\.opensudoku$")))
-        if(dir.replace(QRegExp("\\/[^\\/]*$"), "/"+toCamelCase(ui->nameL->text()) + ".opensudoku") != dir)
+    QString tmp = dir;
+    if(!tmp.contains(QRegExp("\\/[^\\/]*\\.opensudoku$")))
+        if(tmp.replace(QRegExp("\\/[^\\/]*$"), "/"+toCamelCase(ui->nameL->text()) + ".opensudoku") != dir)
             pureURI = false;
 
     if(!pureName)

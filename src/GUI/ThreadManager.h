@@ -19,7 +19,7 @@ private:
 public:
     static bool getAbort() {return abort;}
 
-    QMessageBox *msg;
+    QMessageBox *msg = nullptr;
 
     ThreadManager(QWidget* parent) {
         msg = new QMessageBox;
@@ -40,7 +40,8 @@ public:
     }
 
     ~ThreadManager() {
-        delete msg;
+        if(msg)
+            delete msg;
         abort = false;
     }
 

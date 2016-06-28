@@ -3,8 +3,10 @@
 StackData StackSave::request;
 
 void StackSave::processSudoku(QByteArray &elem) {
-    Sudoku su = StaticGenerator(request.level);
-    elem.append(su.getField(), 81);
+    try {
+        Sudoku su = StaticGenerator(request.level);
+        elem.append(su.getField(), 81);
+    } catch(std::exception &e) {}
 }
 
 StackSave::StackSave(StackData in) {
