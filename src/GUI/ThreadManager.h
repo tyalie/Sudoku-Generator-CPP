@@ -21,7 +21,7 @@ public:
 
     QMessageBox *msg;
 
-    ThreadManager(QWidget* parent = 0) {
+    ThreadManager(QWidget* parent) {
         msg = new QMessageBox;
         abort = false;
         msg->setText("You're waiting.");
@@ -35,13 +35,17 @@ public:
             this, SLOT(cancel(QAbstractButton*)));
     }
 
+    ThreadManager() {
+        abort = false;
+    }
+
     ~ThreadManager() {
         delete msg;
         abort = false;
     }
 
 public slots:
-    void cancel(QAbstractButton *button) {
+    void cancel(QAbstractButton *button = 0) {
         abort = true;
     }
 };

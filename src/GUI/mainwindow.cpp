@@ -37,7 +37,7 @@ void MainWindow::startWithFuture(QFuture<ReturnType> mFuture) {
 
     if(tm!=nullptr)
         delete tm;
-    tm = new ThreadManager;
+    tm = new ThreadManager(this);
 
     QObject::connect(watcher, SIGNAL(finished()), this, SLOT(handleFinished()));
 

@@ -18,8 +18,11 @@ StackSave::StackSave(StackData in) {
     dialog = new QProgressDialog();
     dialog->setLabelText(QString(PROGRESS_TEXT " 0/%1").arg(in.number));
 
+    ThreadManager manager;
+
     QFutureWatcher<void> futureWatcher;
     QObject::connect(&futureWatcher, SIGNAL(finished()), dialog, SLOT(reset()));
+    QObject::connect(dialog, SIGNAL(canceled()), &manager, SLOT(cancel()));
     QObject::connect(dialog, SIGNAL(canceled()), &futureWatcher, SLOT(cancel()));
     QObject::connect(&futureWatcher, SIGNAL(progressRangeChanged(int,int)), dialog, SLOT(setRange(int,int)));
     QObject::connect(&futureWatcher, SIGNAL(progressValueChanged(int)), dialog, SLOT(setValue(int)));
