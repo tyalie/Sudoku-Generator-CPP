@@ -5,7 +5,6 @@ cmake_minimum_required(VERSION 3.0)
 # Add folder where are supportive functions
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../cmake)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_PREFIX_PATH "/Users/Georg/Documents/Qt/5.6/clang_64")
 set(CMAKE_CXX_FLAGS -std="c++11")
 
 # Include qt basic functions
