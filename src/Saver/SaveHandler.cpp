@@ -1,6 +1,6 @@
 #include "Saver/SaveHandler.h"
 
-QString SaveHandler::fileName = "";
+QString SaveHandler::fileName = QDir::homePath() + "/";
 QString SaveHandler::filter = PDF;
 
 SaveHandler::SaveHandler( Sudoku su, QWidget *parent) {
